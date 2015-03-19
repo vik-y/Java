@@ -39,7 +39,7 @@ public class LList {
 	}
 	
 	private int n=0;
-	private LLNode head;
+	private LLNode head, end;
 	
 	
 	public LList(){
@@ -54,6 +54,7 @@ public class LList {
 			insert_node = new LLNode(data);
 			insert_node.next = head;
 			head = insert_node;
+			end = insert_node;
 			n+=1;
 		}
 		else{
@@ -67,6 +68,7 @@ public class LList {
 			next = temp.next;
 			prev.next = insert_node;
 			insert_node.next = next;
+			if(pos==n) end=insert_node;
 			n+=1;
 			
 		}
@@ -74,14 +76,24 @@ public class LList {
 	}
 	
 	public void append(Object data){
-		LLNode insert_node, temp;
+		LLNode insert_node;
+		insert_node = new LLNode(data);
+		/*LLNode insert_node, temp;
 		temp = head;
 		insert_node = new LLNode(data);
 		for(int i=0;i<n-1;i++){
 			temp = temp.next;
 		}
-		temp.next = insert_node;
+		temp.next = insert_node;*/
+		if(n==0) {
+			head = insert_node;
+			end = head;
+		}
+		else{
+			end.next = insert_node;
+		}
 		n+=1;
+		end = insert_node;
 	}
 	
 	
@@ -134,6 +146,24 @@ public class LList {
 		System.out.print("\n");
 	}
 	
+	public String toString() {
+		String response;
+		response = new String("");
+		if(n==0) return response;
+		else{
+			LLNode temp;
+			temp = head;
+			
+			for(int i=0;i<n;i++){
+				//System.out.print(temp.getData());
+				//System.out.print(" ");
+				response += temp.getData()+ " ";
+				temp=temp.next;
+			}
+		}
+		return response;
+	}
+	
 	public Object get(int pos) {
 		if(pos==0) return head.data;
 		LLNode temp;
@@ -143,6 +173,7 @@ public class LList {
 		}
 		return temp.data;
 	}
+	
 	public int find(Object obj) {
 		LLNode temp;
 		temp=head;
@@ -159,24 +190,11 @@ public class LList {
 		// TODO Auto-generated method stub
 		LList test;
 		test = new LList();
-		test.insert(0, 10);
-		test.insert(1, 11);
-		test.insert(2, 12);
-		test.insert(3, 13);
-		test.insert(4, 20);
 		test.append("vikas");
-		test.append("test");
-		
-		test.append("hdfddflo");
-		
-		test.append("anothertest");
+		test.append(1);
+		test.append(100);
 		test.print();
-		test.print();
-		test.remove(3);
-		test.print();
-		test.remove(0);
-		test.print();
-		System.out.println(test.find(10));
+		System.out.println(test);
 	}
 
 }
