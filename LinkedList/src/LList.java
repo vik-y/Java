@@ -46,55 +46,77 @@ public class LList {
 		head=null;
 	}
 	
-	public void setData(Object data){
-		
-	}
 	
 	public void insert(int pos, Object data){
-		LLNode pos_node_prev, insert_node;
-		
-		insert_node = new LLNode(data);
-		
-		pos_node_prev = head;
-		if(n==0){
+		if(pos>n) System.out.println("Error, Can't insert at postion : "+pos);
+		else if(pos==0){
+			LLNode insert_node;
+			insert_node = new LLNode(data);
+			insert_node.next = head;
 			head = insert_node;
 			n+=1;
 		}
-		else if(pos>n) System.out.println("Exception, position doesn't exist");
 		else{
-			for(int i=1;i<pos;i++) pos_node_prev = pos_node_prev.next;
-			LLNode pos_node_next;
-			pos_node_next = pos_node_prev.next;
-			
-			pos_node_prev.next = insert_node;
-			insert_node.next = pos_node_next;
+			LLNode insert_node, next, prev,temp;
+			temp = head;
+			insert_node = new LLNode(data);
+			for(int i=0;i<pos-1;i++){
+				temp = temp.next;
+			}
+			prev = temp;
+			next = temp.next;
+			prev.next = insert_node;
+			insert_node.next = next;
 			n+=1;
+			
 		}
 		
 	}
 	
-	public void append(){
-		
+	public void append(Object data){
+		LLNode insert_node, temp;
+		temp = head;
+		insert_node = new LLNode(data);
+		for(int i=0;i<n-1;i++){
+			temp = temp.next;
+		}
+		temp.next = insert_node;
+		n+=1;
 	}
 	
 	
 	public void pop(){
-		
+		LLNode temp;
+		temp = head;
+		for(int i=0;i<n-2;i++){
+			temp = temp.next;
+		}
+		temp.next = null;
+		n-=1;
 	}
 	
 	
 	public void remove(int pos){
-		
+		LLNode temp;
+		temp = head;
+		if(pos==0){
+			if(n==0) return;
+			head = head.next;
+			n-=1;
+		}
+		else{
+			for(int i=0;i<pos-1;i++){
+				temp = temp.next;
+			}
+			temp.next = temp.next.next;
+			n-=1;
+		}
 	}
 	
 	public void clear(){
-		
+		head = null;
+		n=0;
 	}
-	
-	public void find(Object data){
-		//return 1 if found 0 if not found
-	}
-	
 	
 	
 	public void print(){
@@ -109,6 +131,26 @@ public class LList {
 				temp=temp.next;
 			}
 		}
+		System.out.print("\n");
+	}
+	
+	public Object get(int pos) {
+		if(pos==0) return head.data;
+		LLNode temp;
+		temp=head;
+		for(int i=1;i<pos;i++){
+			temp = temp.next;
+		}
+		return temp.data;
+	}
+	public int find(Object obj) {
+		LLNode temp;
+		temp=head;
+		for(int i=0;i<n;i++){
+			if(obj.equals(temp.data)) return 1;
+			temp = temp.next;
+		}
+		return 0;
 	}
 	
 	
@@ -118,13 +160,23 @@ public class LList {
 		LList test;
 		test = new LList();
 		test.insert(0, 10);
-		test.insert(1, 10);
-		test.insert(2, 10);
-		test.insert(3, 10);
+		test.insert(1, 11);
+		test.insert(2, 12);
+		test.insert(3, 13);
 		test.insert(4, 20);
+		test.append("vikas");
+		test.append("test");
 		
+		test.append("hdfddflo");
+		
+		test.append("anothertest");
 		test.print();
-		
+		test.print();
+		test.remove(3);
+		test.print();
+		test.remove(0);
+		test.print();
+		System.out.println(test.find(10));
 	}
 
 }
