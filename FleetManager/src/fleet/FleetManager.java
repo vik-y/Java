@@ -36,7 +36,6 @@ public class FleetManager {
 			vehicles[i].setLocation(loc);
 			
 			int distanceMoved = distanceMoved(loc, vehicles[i].updatedLocation);
-			System.out.println(distanceMoved);
 			
 			vehicles[i].distanceTravelled += distanceMoved;
 			vehicles[i].distanceCounter += distanceMoved;

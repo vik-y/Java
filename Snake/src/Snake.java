@@ -45,17 +45,17 @@ public class Snake extends Thread{
 
 			try{
 				board[position.y][position.x] = 0;
-				if(direction.equals("right")){
-					System.out.println("gotit");
+				if(direction.equals("d")){
+					//System.out.println("gotit");
 					position.x+=1;
 				}
-				else if(direction.equals("left")){
+				else if(direction.equals("a")){
 					position.x-=1;
 				}
-				else if(direction.equals("up")){
+				else if(direction.equals("w")){
 					position.y-=1;
 				}
-				else if(direction.equals("down")){
+				else if(direction.equals("s")){
 					position.y+=1;
 				}
 				board[position.y][position.x] = 1;
@@ -87,7 +87,8 @@ public class Snake extends Thread{
 		String dir;
 		dir = new String("right");
 		Scanner in = new Scanner(System.in);
-		while(true){
+		
+		while(game.gameover!=1){
 			dir = in.nextLine();
 			System.out.println(dir);
 			game.direction=dir;

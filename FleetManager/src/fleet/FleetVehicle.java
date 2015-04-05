@@ -8,7 +8,7 @@ public class FleetVehicle extends Vehicle{
 	 */
 	
 	Location updatedLocation;
-	public int distanceTravelled;
+	public int distanceTravelled;ww
 	public int distanceCounter;
 	
 	FleetVehicle(){

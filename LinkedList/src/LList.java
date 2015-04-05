@@ -97,7 +97,7 @@ public class LList {
 	}
 	
 	
-	public void pop(){
+	public void pop_last(){
 		LLNode temp;
 		temp = head;
 		for(int i=0;i<n-2;i++){
@@ -130,6 +130,10 @@ public class LList {
 		n=0;
 	}
 	
+	public int size(){
+		return n;
+	}
+	
 	
 	public void print(){
 		if(n==0) System.out.println("Empty List");
@@ -148,7 +152,7 @@ public class LList {
 	
 	public String toString() {
 		String response;
-		response = new String("");
+		response = new String("[");
 		if(n==0) return response;
 		else{
 			LLNode temp;
@@ -157,10 +161,13 @@ public class LList {
 			for(int i=0;i<n;i++){
 				//System.out.print(temp.getData());
 				//System.out.print(" ");
-				response += temp.getData()+ " ";
+				if(i!=n-1)
+					response += temp.getData()+ ", ";
+				else response += temp.getData();
 				temp=temp.next;
 			}
 		}
+		response+="]";
 		return response;
 	}
 	
